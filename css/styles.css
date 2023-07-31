@@ -1,0 +1,102 @@
+/*Hoy vamos a aprender un poco de flexbox y grid*/
+/*recuerda ejecutar el live server para visualizar las diferencias*/
+/*vamos a ir probando las propiedades en el browser*/
+/*haz click en inspeccionar elemento y en styles modificamos los valores*/
+/*podremos ver en tiempo real estas modificaciones y entender los a*/
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 50px;
+}
+
+h1 {
+  color: #007bff;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.flexbox-example,
+.grid-example {
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  width: 300px;
+}
+
+.flexbox-items {
+  display: flex;
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.item,
+.grid-item {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+}
+
+.item-red {
+  background-color: #ff5252;
+}
+
+.item-blue {
+  background-color: #2196f3;
+}
+
+.item-green {
+  background-color: #4caf50;
+}
+
+.item-yellow {
+  background-color: #ffc107;
+}
+
+.item-purple {
+  background-color: #9c27b0;
+}
+
+.grid-example {
+  display: grid;
+  gap: 10px; /* Gap entre filas y columnas */
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-items-areas {
+  display: grid;
+  gap: 10px; /* Gap entre filas y columnas */
+  grid-template-areas:
+    "red red blue"
+    "yellow green green"
+    "purple purple purple";
+}
+
+.item-red {
+  grid-area: red;
+}
+
+.item-blue {
+  grid-area: blue;
+}
+
+.item-green {
+  grid-area: green;
+}
+
+.item-yellow {
+  grid-area: yellow;
+}
+
+.item-purple {
+  grid-area: purple;
+}
