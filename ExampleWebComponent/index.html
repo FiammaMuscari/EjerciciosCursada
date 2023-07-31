@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Contador con Web Components</title>
+  </head>
+  <body>
+    <contador-component></contador-component>
+    <script>
+      // Definimos la clase del componente
+      class ContadorComponent extends HTMLElement {
+        constructor() {
+          super();
+          // Encapsulamos el componente
+          this.attachShadow({ mode: "open" });
+          this.valor = 0;
+
+          // Creamos los elementos del contador
+          this.shadowRoot.innerHTML = `
+          <style>
+            /* Estilos CSS para el componente */
+            :host {
+              display: block;
+              font-family: Arial, sans-serif;
+            }
+            
+            p{
+              margin-left: 5.5em;
+            }
+
+            button {
+              font-size: 18px;
+              padding: 8px 16px;
+              cursor: pointer;
+              background-color: #0f660f;
+              border-radius: 0.3rem;
+              border: none;
+              color: white;
+            }
+          </style>
+          <p>Valor actual: <span id="valor">${this.valor}</span></p>
+          <button id="incrementar">Incrementar</button>
+          <button id="decrementar">Decrementar</button>
+        `;
+
+          // Obtenemos botones y al valor dentro del shadow root
+          this.valorElemento = this.shadowRoot.getElementById("valor");
+          this.incrementarBoton = this.shadowRoot.getElementById("incrementar");
+          this.decrementarBoton = this.shadowRoot.getElementById("decrementar");
+
+          // Asignamos los eventos a los botones
+          this.incrementarBoton.addEventListener(
+            "click",
+            this.incrementar.bind(this)
+          );
+          this.decrementarBoton.addEventListener(
+            "click",
+            this.decrementar.bind(this)
+          );
+        }
+
+        // Función para incrementar el valor del contador
+        incrementar() {
+          this.valor++;
+          this.actualizarValor();
+        }
+
+        // Función para decrementar el valor del contador
+        decrementar() {
+          this.valor--;
+          this.actualizarValor();
+        }
+
+        // Función para actualizar el texto que muestra el valor actual del contador
+        actualizarValor() {
+          this.valorElemento.textContent = this.valor;
+        }
+
+        // Se llama cuando el componente se agrega al DOM
+        connectedCallback() {
+          this.actualizarValor();
+        }
+      }
+
+      // Registramos el componente como un elemento personalizado
+      customElements.define("contador-component", ContadorComponent);
+    </script>
+  </body>
+</html>
